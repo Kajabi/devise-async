@@ -13,7 +13,7 @@ module Devise
         def perform(method, resource_class, resource_id, *args)
           resource = resource_class.constantize.to_adapter.get!(resource_id)
           args[-1] = args.last.symbolize_keys if args.last.is_a?(Hash)
-          mailer_class(resource).send(method, resource, *args).deliver
+          mailer_class(resource).send(method, resource, *args).deliver_now
         end
 
         private
